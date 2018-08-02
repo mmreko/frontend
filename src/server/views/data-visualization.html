@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>InfluenzaNet Demo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	
+	<script type="text/javascript">
+		window.onload = function () {
+			var chart1 = new CanvasJS.Chart("chartContainer1", {
+
+				title: 
+				{
+					text: "Sensor Data Per Season"              
+				},
+				data: [              
+				{ 
+				/*** Change type "column" to "bar", "area", "line" or "pie"***/
+					type: "line",
+					dataPoints: [
+						{ label: "2016", y: <%=data.s2016%> },
+						{ label: "2017", y: <%=data.s2017%> },
+						{ label: "2018", y: <%=data.s2018%> }
+					]
+				}
+				]
+			});
+
+			chart1.render();
+					
+			var chart2 = new CanvasJS.Chart("chartContainer2", {
+
+				title: 
+				{
+					text: "Sensor Data Per Category"              
+				},
+				data: [              
+				{ 
+				/*** Change type "column" to "bar", "area", "line" or "pie"***/
+					type: "column",
+					dataPoints: [
+						{ label: "Bluetooth", y: <%=data.bluetooth%> },
+						{ label: "Step Count", y: <%=data.stepCount%> },
+						{ label: "Activity", y: <%=data.activity%> },                                    
+						{ label: "Location", y: <%=data.location%> },
+						{ label: "User Apps", y: <%=data.userApps%> },
+						{ label: "Setting", y: <%=data.setting%> }
+					]
+				}
+				]
+			});
+
+			chart2.render();
+					
+			var chart3 = new CanvasJS.Chart("chartContainer3", {
+
+				title: 
+				{
+					text: "Location Distribution"              
+				},
+				data: [              
+				{ 
+				/*** Change type "column" to "bar", "area", "line" or "pie"***/
+					type: "pie",
+					dataPoints: [
+						{ label: "Germany", y: <%=data.germany%> },
+						{ label: "France", y: <%=data.france%> },
+						{ label: "Italy", y: <%=data.italy%> },                                    
+						{ label: "Denmark", y: <%=data.denmark%> },
+						{ label: "Switzerland", y: <%=data.switzerland%> }
+					]
+				}
+				]
+			});
+
+			chart3.render();
+					
+			var chart4 = new CanvasJS.Chart("chartContainer4", {
+
+				title: 
+				{
+					text: "Step Count Distribution"              
+				},
+				data: [              
+				{ 
+				/*** Change type "column" to "bar", "area", "line" or "pie"***/
+					type: "bar",
+					dataPoints: [
+						{ label: "0-1000", y: <%=data.steps1%> },
+						{ label: "1000-2000", y: <%=data.steps2%> },
+						{ label: "2000-3000", y: <%=data.steps3%> },                                    
+						{ label: "3000-4000", y: <%=data.steps4%> },
+						{ label: "4000+", y: <%=data.steps5%> }
+					]
+				}
+				]
+			});
+
+			chart4.render();
+
+		}
+	</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+	<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">InfluenzaNet</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+			<li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" <%=login%> href="#login">Log In</a>
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" <%=logout%> href="http://192.168.99.100:3000/logout">Log Out</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	
+	<!-- Data Visualization Section -->
+    <section id="charts">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0" style="margin-top: 100px">Data Visualization</h2>
+        
+		<div class="row">
+			<div class="col-md-6">
+				<div id="chartContainer1" style="height: 300px; width: 100%; margin-top: 100px"></div>
+			</div>
+			<div class="col-md-6">
+				<div id="chartContainer2" style="height: 300px; width: 100%; margin-top: 100px"></div>
+			</div>
+		 </div>
+		 
+		 <div class="row">
+			<div class="col-md-6">
+				<div id="chartContainer3" style="height: 300px; width: 100%; margin-top: 100px"></div>
+			</div>
+			<div class="col-md-6">
+				<div id="chartContainer4" style="height: 300px; width: 100%; margin-top: 100px"></div>
+			</div>
+		 </div>
+		
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="bg-primary text-white mb-0" id="about">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-white">About</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+          <div class="col-lg-4 ml-auto">
+            <p class="lead">Influenzanet is a Europe-wide network to monitor the activity of influenza-like-illness (ILI) with the aid of volunteers via the internet. It is operational in ten countries. </p>
+          </div>
+          <div class="col-lg-4 mr-auto">
+            <p class="lead">In contrast with the traditional system of sentinel networks of mainly primary care physicians, Influenzanet obtains its data directly from the population. This creates a fast and flexible monitoring system whose uniformity allows for direct comparison of ILI rates between countries. </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-5 mb-lg-0">
+            <h4 class="text-uppercase mb-4">Countries</h4>
+            <p class="lead mb-0">UK, Ireland, Italy, France, Spain, Portugal, Germany, Denmark, Finland, Switzerland</p>
+          </div>
+          <div class="col-md-4 mb-5 mb-lg-0">
+            <h4 class="text-uppercase mb-4">Around the Web</h4>
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item">
+                <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.facebook.com/influenzanet/">
+                  <i class="fa fa-fw fa-facebook"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://twitter.com/influenzanet?lang=en">
+                  <i class="fa fa-fw fa-twitter"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4 class="text-uppercase mb-4">About This Demo</h4>
+            <p class="lead mb-0">This demo is a part of the Master Thesis done by Maša Reko (TU Kaiserslautern).</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="copyright py-4 text-center text-white">
+      <div class="container">
+        <small>Copyright &copy; Your Website 2018</small>
+      </div>
+    </div>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-to-top d-lg-none position-fixed ">
+      <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/freelancer.min.js"></script>
+
+  </body>
+
+</html>
