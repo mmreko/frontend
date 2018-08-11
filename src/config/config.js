@@ -5,14 +5,14 @@ const serverSettings = {
 
 // authentication service parameters
 const authOptions = {
-	host: "192.168.99.103",
+	host: "192.168.99.100",
 	port: 3000
 }
 
 // visualization service parameters
 const visualizationOptions = {
-	host: "192.168.99.106",
-	port: 3000
+	host: "192.168.99.100",
+	port: 5000
 }
 
 module.exports = Object.assign({}, { serverSettings, authOptions, visualizationOptions })
