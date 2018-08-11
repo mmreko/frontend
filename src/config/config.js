@@ -1,6 +1,6 @@
 // server parameters
 const serverSettings = {
-	port: 3000
+	port: 80
 }
 
 // authentication service parameters
