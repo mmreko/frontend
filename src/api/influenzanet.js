@@ -7,11 +7,14 @@ module.exports = (app, options) => {
 	
 	// GET /
 	app.get('/',function(req, res) {
+		console.log("Home page")
 		let session = req.session;
 		if(session.email) {
+			console.log("Home page - redirecting to visualization")
 			res.redirect('/visualization');
 		}
 		else {
+			console.log("Home page - rendering home page")
 			res.render('home.html', {
 				logout: 'hidden',
 				login: 'visible'
@@ -21,9 +24,12 @@ module.exports = (app, options) => {
 	
 	// GET /visualization
 	app.get('/visualization',function(req, res, next) {
+		console.log("Visualization")
 		repo.visualize().then(data => {
+			console.log("API: " + data[0])
 			let session = req.session;
 			if(session.email) {
+				console.log("Visualization - rendering visualization")
 				res.render('data-visualization.html', {
 					logout: 'visible',
 					login: 'hidden',
@@ -31,6 +37,7 @@ module.exports = (app, options) => {
 				});
 			}
 			else {
+				console.log("Visualization - redirecting to home")
 				res.redirect('/');
 			}
 		}).catch(next)
@@ -38,13 +45,14 @@ module.exports = (app, options) => {
 	
 	// POST /login
 	app.post('/login', (req, res, next) => {
+		console.log("Login")
 		repo.login(req.body.email, req.body.password).then(researcher => {
 			if (researcher == null) {
 				req.session.error = 'Authentication failed.';
-				console.log('Authentication failed');
+				console.log('API: Authentication failed');
 			}
 			else {
-				console.log(researcher)
+				console.log("API: " + researcher.name)
 				req.session.email = researcher.email
 				req.session.name = researcher.name
 				req.session.group = researcher.group

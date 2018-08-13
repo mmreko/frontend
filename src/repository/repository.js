@@ -37,6 +37,7 @@ const repository = () => {
 				});
 				res.on('end', () => {
 					researcher = JSON.parse(data.join(''));
+					console.log("Repo: " + researcher.name)
 					resolve(researcher)
 				});
 			});
@@ -74,6 +75,7 @@ const repository = () => {
 				});
 				res.on('end', () => {
 					visualizationData = JSON.parse(data.join(''));
+					console.log("Repo: " + visualizationData[0])
 					resolve(visualizationData)
 				});
 			});
