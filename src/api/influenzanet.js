@@ -26,7 +26,7 @@ module.exports = (app, options) => {
 	app.get('/visualization',function(req, res, next) {
 		console.log("Visualization")
 		repo.visualize().then(data => {
-			console.log("API: " + data[0])
+			console.log("API: " + data[0].type)
 			let session = req.session;
 			if(session.email) {
 				console.log("Visualization - rendering visualization")
