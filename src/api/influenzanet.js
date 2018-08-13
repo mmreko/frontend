@@ -41,8 +41,10 @@ module.exports = (app, options) => {
 		repo.login(req.body.email, req.body.password).then(researcher => {
 			if (researcher == null) {
 				req.session.error = 'Authentication failed.';
+				console.log('Authentication failed');
 			}
 			else {
+				console.log(researcher)
 				req.session.email = researcher.email
 				req.session.name = researcher.name
 				req.session.group = researcher.group
