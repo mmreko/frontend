@@ -75,7 +75,6 @@ const repository = () => {
 				});
 				res.on('end', () => {
 					visualizationData = JSON.parse(data.join(''));
-					console.log("Repo: " + visualizationData[0].type)
 					resolve(visualizationData)
 				});
 			});
